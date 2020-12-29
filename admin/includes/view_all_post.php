@@ -7,7 +7,7 @@
                         <th>Category</th>
                         <th>Status</th>
                         <th>Image</th>
-                 s       <th>Tags</th>
+                        <th>Tags</th>
                         <th>Comments</th>
                         <th>Date</th>
                     </tr>
@@ -43,6 +43,9 @@
         echo "<td>{$post_tags}</td>";
         echo "<td>{$post_comment_count}</td>";
         echo "<td>{$post_date}</td>";
+        echo "<td><a href='./post.php?delete_post&p_id={$post_id}'>Delete</td>";
+        echo "<td><a href='./post.php?edit_post={$post_id}'>Edit</td>";
+
         echo "</tr>";
 
     
@@ -53,6 +56,7 @@
     
     
                     ?>
+<!--
                     <td>10</td>
                     <td>Tanmay Kejriwal</td>
                     <td>Bootstrap framework</td>
@@ -62,10 +66,27 @@
                     <td>Tags</td>
                     <td>Comments</td>
                     <td>Date</td>
+-->
                 
             </tbody> 
-                     
-                                   
-                
-                
             </table>
+            
+           
+          
+         
+        <?php
+
+
+if(isset($_GET['delete_post'])){
+    
+    $the_post_id = $_GET['delete_post'];
+    $query = "DELETE FROM posts WHERE post_id = {$the_post_id}";
+    $delete_query = mysqli_query($connection,$query);
+    header("Location: ./post.php");
+    
+}
+
+
+
+
+?>
